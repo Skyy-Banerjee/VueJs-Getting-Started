@@ -2072,3 +2072,95 @@ button:hover {
 }
 </style>
 ```
+# Random Quote Gnerator in Vue 💭
+```html
+<script setup>
+import { ref, onMounted } from 'vue';
+
+const quotes = ref([
+	{
+		quote: "Life is what happens when you're busy making other plans.",
+		author: 'John Lennon',
+	},
+	{
+		quote: 'The only way to do great work is to love what you do.',
+		author: 'Steve Jobs',
+	},
+	{
+		quote:
+			"In three words I can sum up everything I've learned about life: it goes on.",
+		author: 'Robert Frost',
+	},
+]);
+
+const currQuote = ref({ quote: '', author: '' });
+
+function getRandQuote() {
+	const randIdx = Math.floor(Math.random() * quotes.value.length);
+	currQuote.value = quotes.value[randIdx]; // Update value using .value property
+}
+
+onMounted(getRandQuote);
+</script>
+
+<template>
+	<div class="quote-generator">
+		<h1 class="app-title">Random Quote Genrator</h1>
+		<blockquote class="quote-container">
+			<p>{{ currQuote.quote }}</p>
+			<cite>{{ currQuote.author }}</cite>
+		</blockquote>
+		<button @click="getRandQuote" class="quote-button">Get Random Quote</button>
+	</div>
+</template>
+
+<style scoped>
+.quote-generator {
+	max-width: 400px;
+	margin: 50px auto;
+	padding: 20px;
+	text-align: center;
+	border: 1px solid #ccc;
+	border-radius: 8px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.app-title {
+	font-size: 24px;
+	margin-bottom: 20px;
+	color: #333;
+}
+
+.quote-container {
+	background-color: #f9f9f9;
+	padding: 20px;
+	border-radius: 8px;
+	border: 1px solid #ddd;
+	margin-bottom: 20px;
+}
+
+p {
+	font-size: 18px;
+	margin-bottom: 10px;
+}
+
+cite {
+	font-style: normal;
+	color: #777;
+}
+
+.quote-button {
+	padding: 10px 20px;
+	font-size: 16px;
+	background-color: #3498db;
+	color: #fff;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+.quote-button:hover {
+	background-color: #2980b9;
+}
+</style>
+```
